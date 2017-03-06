@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<sensorBox>
+    <boxId>nakamura02</boxId>
+    <owner>nakamura</owner>
+    <location>Grenoble IMAG D316 (Fixed)</location>
+    <endpoint>http://BoxSensorService/nakamura02</endpoint>
+    <sensors>
+	    <sensor>
+	        <sensorId>light</sensorId>
+	        <device>Phidgets1127_Light</device>
+	        <sensortype>Light</sensortype>
+	        <accessMethod>
+	            <interface>IFKit</interface>
+	            <serial>39824</serial>
+	            <port>0</port>
+	        </accessMethod>
+	        <samplingRate>1000</samplingRate>
+	    </sensor>
+		<sensor>
+	        <sensorId>sound</sensorId>
+	        <device>Phidgets1133_Sound</device>
+	        <sensortype>Sound</sensortype>
+	        <accessMethod>
+	            <interface>IFKit</interface>
+	            <serial>39824</serial>
+	            <port>1</port>
+	        </accessMethod>
+	        <samplingRate>10000</samplingRate>
+	    </sensor>
+		<sensor>
+	        <sensorId>motion</sensorId>
+	        <device>Phidgets1111_Motion</device>
+	        <sensortype>Motion</sensortype>
+	        <accessMethod>
+	            <interface>IFKit</interface>
+	            <serial>39824</serial>
+	            <port>2</port>
+	        </accessMethod>
+	        <samplingRate>10</samplingRate>
+	    </sensor>
+		<sensor>
+	        <sensorId>force</sensorId>
+	        <device>Phidgets1106_Force</device>
+	        <sensortype>Force</sensortype>
+	        <accessMethod>
+	            <interface>IFKit</interface>
+	            <serial>39824</serial>
+	            <port>3</port>
+	        </accessMethod>
+	        <samplingRate>10000</samplingRate>
+	    </sensor>
+	    <sensor>
+	        <sensorId>gasPressure</sensorId>
+	        <device>Phidgets1115_GasPressure</device>
+	        <sensortype>GasPressure</sensortype>
+	        <accessMethod>
+	            <interface>IFKit</interface>
+	            <serial>39824</serial>
+	            <port>4</port>
+	        </accessMethod>
+	        <samplingRate>10000</samplingRate>
+	    </sensor>
+		<sensor>
+	        <sensorId>temperature</sensorId>
+	        <device>Phidgets1125_Temperature</device>
+	        <sensortype>Temperature</sensortype>
+	        <accessMethod>
+	            <interface>IFKit</interface>
+	            <serial>39824</serial>
+	            <port>5</port>
+	        </accessMethod>
+	        <samplingRate>10000</samplingRate>
+	    </sensor>
+		<sensor>
+	        <sensorId>humidity</sensorId>
+	        <device>Phidgets1125_Humidity</device>
+	        <sensortype>Humidity</sensortype>
+	        <accessMethod>
+	            <interface>IFKit</interface>
+	            <serial>39824</serial>
+	            <port>6</port>
+	        </accessMethod>
+	        <samplingRate>10000</samplingRate>
+	    </sensor>
+	    <sensor>
+	        <sensorId>vibration</sensorId>
+	        <device>Phidgets1104_Vibration</device>
+	        <sensortype>Vibration</sensortype>
+	        <accessMethod>
+	            <interface>IFKit</interface>
+	            <serial>39824</serial>
+	            <port>7</port>
+	        </accessMethod>
+	        <samplingRate>10000</samplingRate>
+	    </sensor>
+
+
+
+
+
+	    <!-- httpのパターンならこんな感じ -->
+	    <!--
+	    <sensor>
+	        <sensorId>power02</sensorId>
+	        <device>HTTP</device>
+	        <accessMethod>
+				<url>http:/aaaa</url>
+	        </accessMethod>
+	        <samplingRate>10000</samplingRate>
+	    </sensor>
+		 -->
+	</sensors>
+</sensorBox>

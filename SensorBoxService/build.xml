@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project basedir="." default="generate.service">
+
+	<!-- aar作成用作業フォルダ -->
+	<property name="dest.dir" value="build" />
+	<property name="dest.dir.classes" value="${dest.dir}/classes" />
+	<property name="dest.dir.lib" value="${dest.dir.classes}/lib" />
+
+	<!-- aarはプロジェクトのフォルダに作る -->
+	<property name="repository.path" value="." />
+
+	<!-- サービス名 -->
+	<property name="service.name" value="SensorBoxService" />
+
+	<!-- クリーン -->
+	<target name="clean">
+		<delete dir="${dest.dir}" />
+	</target>
+
+	<!-- ビルドに必要なクラスパス．TomcatとAxisのライブラリをインクルード -->
+	<path id="build.class.path">
+		<fileset dir="lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<!-- 前処理タスク．作業ディレクトリを(なければ)掘る -->
+	<target name="prepare">
+		<mkdir dir="${dest.dir}" />
+		<mkdir dir="${dest.dir.classes}" />
+		<mkdir dir="${dest.dir.lib}" />
+		<mkdir dir="${dest.dir.classes}/META-INF" />
+	</target>
+
+	<!-- ビルドタスク．cleanとprepare実行後 -->
+	<target name="generate.service" depends="clean,prepare">
+		<!-- services.xmlおよびログ用プロパティを作業ディレクトリ(META-INF)にコピー-->
+		<copy todir="${dest.dir.classes}/META-INF" overwrite="true">
+			<fileset dir="src/META-INF/" />
+		</copy>
+
+		<!-- eval.jarライブラリを作業ライブラリディレクトリにコピー-->
+		<copy  todir="${dest.dir.lib}" overwrite="true">
+			<fileset dir="lib/" />
+		</copy>
+		<!--		<copy file="lib/eval.jar" todir="${dest.dir.lib}" overwrite="true" />
+		<copy file="lib/SensorServiceFramework.jar" todir="${dest.dir.lib}" overwrite="true" />
+		<copy file="lib/powerConsumptionBean.jar" todir="${dest.dir.lib}" overwrite="true" />
+		<copy file="lib/phidget21.jar" todir="${dest.dir.lib}" overwrite="true" />
+		<copy file="lib/ibatis-2.3.4.726.jar" todir="${dest.dir.lib}" overwrite="true" />
+		-->
+
+		<!-- コンパイル．作業ディレクトリにクラス生成．クラスパスは上で定義したもの -->
+		<javac debug="true" encoding="UTF-8" srcdir="src" destdir="${dest.dir.classes}"
+			includes="jp/kobe_u/cs27/sensor/**">
+			<classpath refid="build.class.path" />
+		</javac>
+
+		<!-- JARでAARファイルに固める -->
+		<jar basedir="${dest.dir.classes}" destfile="${dest.dir}/${service.name}.aar" />
+
+		<!-- プロジェクトフォルダへコピー -->
+		<copy file="${dest.dir}/${service.name}.aar" tofile="${repository.path}/${service.name}.aar" overwrite="true" />
+	</target>
+</project>
